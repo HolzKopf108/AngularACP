@@ -17,6 +17,18 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./views/users/users.component').then(m => m.UsersComponent)
+      },
+      {
+        path: 'events',
+        loadComponent: () => import('./views/events/events.component').then(m => m.EventsComponent)
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('./views/settings/settings.component').then(m => m.SettingsComponent)
       }
     ]
   },

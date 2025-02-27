@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Title } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { delay, filter, map, tap } from 'rxjs/operators';
 
@@ -8,10 +8,17 @@ import { ColorModeService } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../assets/icons/icon-subset';
 
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de'; 
+import { LOCALE_ID } from '@angular/core';
+
 @Component({
     selector: 'app-root',
     template: '<router-outlet />',
-    imports: [RouterOutlet]
+    imports: [RouterOutlet, BrowserModule],
+    providers: [
+      { provide: LOCALE_ID, useValue: 'de' } 
+    ]
 })
 export class AppComponent implements OnInit {
   title = 'Randalo Admin Control Panel';
@@ -30,6 +37,7 @@ export class AppComponent implements OnInit {
     this.#iconSetService.icons = { ...iconSubset };
     this.#colorModeService.localStorageItemName.set('coreui-free-angular-admin-template-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
+    registerLocaleData(localeDe);
   }
 
   ngOnInit(): void {

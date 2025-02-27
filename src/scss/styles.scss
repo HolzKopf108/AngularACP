@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme -> really changes some things
+@import "theme";
